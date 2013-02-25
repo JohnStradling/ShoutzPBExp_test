@@ -1,8 +1,8 @@
 <?php
 function insert($new_email){
 
-	$db_host = '192.168.100.155';
-$db_name = 'Cerberus';
+	$db_host = '198.61.140.158';
+$db_name = 'Cerberus-DEV';
 $db_user = 'Hermes';
 $db_pass = 'M3ss3ng3r';
 ini_set("display_errors", 1);
@@ -61,8 +61,8 @@ sqlsrv_close( $conn );
 
 function select_all_email_addresses(){
 	
-		$db_host = '192.168.100.155';
-$db_name = 'Cerberus';
+	$db_host = '198.61.140.158';
+$db_name = 'Cerberus-DEV';
 $db_user = 'Hermes';
 $db_pass = 'M3ss3ng3r';
 ini_set("display_errors", 1);
