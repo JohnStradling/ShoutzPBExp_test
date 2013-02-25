@@ -148,7 +148,7 @@ var subscribe = function()
             success: function(response){
                 if(response){
                     $('#subscribe').val('');
-                    $('#subscribeMesage').text("Thanks, we will send you a reminder!");
+                    $('#subscribeMesage').text(response);
                     $('#subscribeMesage').removeClass('red-label').addClass('green-label');
                 }
             }
