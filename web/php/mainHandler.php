@@ -33,13 +33,17 @@ if (isset($_POST["action"])) {
                 if (isset($_POST["email"]) && !empty($_POST["email"])) {
                     $subscriberEmail = $_POST["email"];
 					include_once ('db.php');
-					if (SaveEmail($_POST["email"]) == 1)
+					if (SaveEmail($_POST["email"]) == 0)
 					{
-						$response = "Message Sent";
+						$response = "Message Not Sent: Connection Failed";
+					}
+					else if (SaveEmail($_POST["email"]) == 1)
+					{
+						$response = "Message Not Sent: Insert Failed";
 					}
 					else 
 					{
-						$response = "Sending Message Failed";
+						$response = "Message Sent";
 					}
 /*					include_once (dirname(dirname(__FILE__)).'/php/classes/class__mail.php');
 
@@ -70,6 +74,7 @@ if (isset($_POST["action"])) {
 }
 
 if (isset($response) && !empty($response) && !is_null($response)) {
-    echo '{"ResponseData":' . json_encode($response) . '}';
+    echo $response;
+	//echo '{"ResponseData":' . json_encode($response) . '}';
 }
 ?>

@@ -15,7 +15,7 @@ function SaveEmail($Email)
    $conn = sqlsrv_connect( $serverName, $connectionInfo);
    if($conn === false)
    {
-     FatalError("Failed to connect...");
+     //FatalError("Failed to connect...");
 	 return 0;
    }
 
@@ -24,13 +24,13 @@ function SaveEmail($Email)
    $stmt = sqlsrv_query($conn, $tsql);
    if ($stmt === false)
    {
-     FatalError("Failed to insert data into test table: ");
-	 return 0;
+     //FatalError("Failed to insert data into test table: ");
+	 return 1;
    }
    sqlsrv_free_stmt($stmt);
 
    sqlsrv_close($conn);
-   return 1;
+   return 2;
 }
 
 function FatalError($errorMsg)
