@@ -32,7 +32,16 @@ if (isset($_POST["action"])) {
         case "Subscribe": {
                 if (isset($_POST["email"]) && !empty($_POST["email"])) {
                     $subscriberEmail = $_POST["email"];
-					include_once (dirname(dirname(__FILE__)).'/php/classes/class__mail.php');
+					include_once ('db.php');
+					if (SaveEmail($_POST["email"]) == 1)
+					{
+						$response = "Message Sent";
+					}
+					else 
+					{
+						$response = "Sending Message Failed";
+					}
+/*					include_once (dirname(dirname(__FILE__)).'/php/classes/class__mail.php');
 
                     $messageText = 'You have new subscriber for your site.<br /><br />This is the subscribed email address<br />====================================<br />' . $subscriberEmail;
 
@@ -40,9 +49,10 @@ if (isset($_POST["action"])) {
                 } else {
                     $response = "Sending Message Failed";
                 }
-            }
+ */
+			}
             break;
-        case "SendMessage": {
+  /*      case "SendMessage": {
                 if (isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["subject"]) && isset($_POST["message"])
                         && !empty($_POST["name"]) && !empty($_POST["email"]) && !empty($_POST["subject"]) && !empty($_POST["message"])) {
                     include("classes/class__mail.php");
@@ -53,7 +63,7 @@ if (isset($_POST["action"])) {
                 }
             }
             break;
-        default: {
+ */       default: {
                 $response = "Invalid action is set! Action is: " . $action;
             }
     }
