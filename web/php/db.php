@@ -1,6 +1,9 @@
 
 <?php
-
+function CheckDBLoad()
+{
+	echo "Loaded db";
+}
 function SaveEmail($Email) 
 {
    $serverName = "tcp:e4ystu4bed.database.windows.net,1433";
@@ -21,6 +24,7 @@ function SaveEmail($Email)
 
     
    $tsql = "INSERT INTO [$table] (Email) VALUES ($Email)";
+   echo $tsql;
    $stmt = sqlsrv_query($conn, $tsql);
    if ($stmt === false)
    {
