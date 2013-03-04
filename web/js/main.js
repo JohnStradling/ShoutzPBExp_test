@@ -152,6 +152,12 @@ var subscribe = function()
                         //$('#subscribeMesage').text("Thanks, we will send you a reminder!");
                         $('#subscribeMesage').removeClass('red-label').addClass('green-label');
                 }
+				else {
+                        $('#subscribe').val('');
+                        $('#subscribeMesage').text("Something went wrong");
+                        //$('#subscribeMesage').text("Thanks, we will send you a reminder!");
+                        $('#subscribeMesage').removeClass('red-label').addClass('green-label');
+                }
             }
         });
     }
