@@ -137,14 +137,16 @@ var subscribe = function()
         $('#subscribeMesage').removeClass('green-label').addClass('red-label');
     }
     if(isValid){
-        var params = {
+        /*var params = {
             'action'    : 'Subscribe',
             'email'     : inputEmail
-        };
+        };*/
         $.ajax({
-            type: "POST",
-            url: "php/mainHandler.php",
-            data: params,
+            type: "GET",
+            //type: "POST",
+            url: "php/mainHandler.php?action=Subscribe&email=" + inputEmail,
+            //url: "php/mainHandler.php",
+            //data: params,
             success: function(response){
                 if(response){
                         $('#subscribe').val('');

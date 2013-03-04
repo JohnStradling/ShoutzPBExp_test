@@ -30,14 +30,15 @@ if (isset($_POST["action"])) {
 
     switch ($action) {
         case "Subscribe": {
-                if (isset($_POST["email"]) && !empty($_POST["email"])) {
-                    $subscriberEmail = $_POST["email"];
+                if (isset($_REQUEST["email"]) && !empty($_REQUEST["email"])) {
+                    $subscriberEmail = $_REQUEST["email"];
 					include_once ('db.php');
-					if (SaveEmail($_POST["email"]) == 0)
+					$result = SaveEmail($_REQUEST["email"]);
+					if ($result == 0)
 					{
 						$response = "Message Not Sent: Connection Failed";
 					}
-					else if (SaveEmail($_POST["email"]) == 1)
+					else if ($result == 1)
 					{
 						$response = "Message Not Sent: Insert Failed";
 					}
