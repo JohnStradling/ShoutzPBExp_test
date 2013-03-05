@@ -116,6 +116,7 @@
         </div>
         <div id="contact">
             <div class="contact">
+				<form name="emailform" id="emailform" action="index.php" method="post">
                 <img class="fill-the-forms" src="images/fill_the_forms.png" alt="Fill the forms bellow"/>
                 <a class="closePopup" href="javascript: ClosePopupWindow();"><img src="images/close.png" alt="Close"/></a>
                 <ul class="user-data">
@@ -132,10 +133,86 @@
                         <textarea class="rounded" id="message" cols="35" rows="6"></textarea>
                     </li>
                     <li>
-                        <a href="javascript: SendMail();" class="link-button left">
+                        <a href="javascript: document.forms['emailform'].submit();" class="link-button left">
                             <img src="images/send_msg_button.png" class="button-image" alt="Submit"/>
                         </a>
-                        <span id="messageStatus" class="info-label block green-label right">                            
+                        <span id="messageStatus" class="info-label block green-label right">      
+
+<?php 
+if (isset($_REQUEST['email']))
+{
+	$result = SaveEmail($_REQUEST['email']);
+	if ($result == 0)
+	{
+		echo "Failed to connect";
+	}
+	if ($result == 1)
+	{
+		echo "Failed to save data";
+	}
+	if ($result == 2)
+	{
+		echo "Thanks, we'll remind you in a bit!";
+	}
+	
+}
+function SaveEmail($Email) 
+{
+   $serverName = "tcp:e4ystu4bed.database.windows.net,1433";
+   $userName = 'Hermes@e4ystu4bed';
+   $userPassword = 'M3ss3ng3r';
+   $dbName = "powerballexp";
+   $table = "Stage.EmailCapture";
+  
+   $connectionInfo = array("Database"=>$dbName, "UID"=>$userName, "PWD"=>$userPassword, "MultipleActiveResultSets"=>true);
+
+   sqlsrv_configure('WarningsReturnAsErrors', 0);
+   $conn = sqlsrv_connect( $serverName, $connectionInfo);
+   if($conn === false)
+   {
+     //FatalError("Failed to connect...");
+	 return 0;
+   }
+
+    
+   $tsql = "INSERT INTO [$table] (Email) VALUES ($Email)";
+   echo $tsql;
+   $stmt = sqlsrv_query($conn, $tsql);
+   if ($stmt === false)
+   {
+     //FatalError("Failed to insert data into test table: ");
+	 return 1;
+   }
+   sqlsrv_free_stmt($stmt);
+
+   sqlsrv_close($conn);
+   return 2;
+}
+
+function FatalError($errorMsg)
+{
+    Handle_Errors();
+}
+
+
+function Handle_Errors()
+{
+    $errors = sqlsrv_errors(SQLSRV_ERR_ERRORS);
+    $count = count($errors);
+    if($count == 0)
+    {
+       $errors = sqlsrv_errors(SQLSRV_ERR_ALL);
+       $count = count($errors);
+    }
+    if($count > 0)
+    {
+      for($i = 0; $i < $count; $i++)
+      {
+         echo $errors[$i]['message']."\n";
+      }
+    }
+}
+?>						
                         </span>
                     </li>
                 </ul>
