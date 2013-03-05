@@ -88,56 +88,10 @@
                         </span>
                     </div>
                     <div class="right subscribe-button-holder">
-                        <a href="javascript: subscribe();" class="link-button">
+                        <a href="javascript: document.forms['emailform'].submit();" class="link-button">
                             <img src="images/send_msg_button.png" class="button-image" alt="Enter Now"/>
                         </a>
                         <span id="subscribeMesage" class="info-label block align-center green-label">                            
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="widgets">
-            <div class="center-content">
-                    </div>
-                </div>
-                <div class="clear">&nbsp;</div>
-            </div>
-        </div>        
-        <div class="footer">        
-            <div class="center-content align-center">  
-                <p class="info">
-                    Copyright 2013. Powered by Shoutz™. All Rights Reserved.<br />
-                    Download the Mobile Powerball Experience.
-                </p>
-                <img class="separator" src="images/footer_separator.png" alt=""/>
-                <div class="clear">&nbsp;</div>
-            </div>
-        </div>
-        <div id="contact">
-            <div class="contact">
-				<form name="emailform" id="emailform" action="index.php" method="post">
-                <img class="fill-the-forms" src="images/fill_the_forms.png" alt="Fill the forms bellow"/>
-                <a class="closePopup" href="javascript: ClosePopupWindow();"><img src="images/close.png" alt="Close"/></a>
-                <ul class="user-data">
-                    <li>
-                        <input type="text" class="rounded" id="name"/>
-                    </li>
-                    <li>
-                        <input type="text" class="rounded" id="email"/>
-                    </li>
-                    <li>
-                        <input type="text" class="rounded" id="subject"/>
-                    </li>
-                    <li>
-                        <textarea class="rounded" id="message" cols="35" rows="6"></textarea>
-                    </li>
-                    <li>
-                        <a href="javascript: document.forms['emailform'].submit();" class="link-button left">
-                            <img src="images/send_msg_button.png" class="button-image" alt="Submit"/>
-                        </a>
-                        <span id="messageStatus" class="info-label block green-label right">      
-
 <?php 
 if (isset($_REQUEST['email']))
 {
@@ -213,6 +167,51 @@ function Handle_Errors()
     }
 }
 ?>						
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widgets">
+            <div class="center-content">
+                    </div>
+                </div>
+                <div class="clear">&nbsp;</div>
+            </div>
+        </div>        
+        <div class="footer">        
+            <div class="center-content align-center">  
+                <p class="info">
+                    Copyright 2013. Powered by Shoutz™. All Rights Reserved.<br />
+                    Download the Mobile Powerball Experience.
+                </p>
+                <img class="separator" src="images/footer_separator.png" alt=""/>
+                <div class="clear">&nbsp;</div>
+            </div>
+        </div>
+        <div id="contact">
+            <div class="contact">
+				<form name="emailform" id="emailform" action="index.php" method="post">
+                <img class="fill-the-forms" src="images/fill_the_forms.png" alt="Fill the forms bellow"/>
+                <a class="closePopup" href="javascript: ClosePopupWindow();"><img src="images/close.png" alt="Close"/></a>
+                <ul class="user-data">
+                    <li>
+                        <input type="text" class="rounded" id="name"/>
+                    </li>
+                    <li>
+                        <input type="text" class="rounded" id="email"/>
+                    </li>
+                    <li>
+                        <input type="text" class="rounded" id="subject"/>
+                    </li>
+                    <li>
+                        <textarea class="rounded" id="message" cols="35" rows="6"></textarea>
+                    </li>
+                    <li>
+                        <a href="javascript: SendMail();" class="link-button left">
+                            <img src="images/send_msg_button.png" class="button-image" alt="Submit"/>
+                        </a>
+                        <span id="messageStatus" class="info-label block green-label right">      
                         </span>
                     </li>
                 </ul>
