@@ -113,7 +113,7 @@ if (isset($_REQUEST['email']))
 function SaveEmail($Email) 
 {
    $serverName = "tcp:e4ystu4bed.database.windows.net,1433";
-   $userName = 'Hermes@e4ystu4bed';
+   $userName = 'Hermes';
    $userPassword = 'M3ss3ng3r';
    $dbName = "powerballexp";
    $table = "Stage.EmailCapture";
