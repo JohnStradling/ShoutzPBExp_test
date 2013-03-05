@@ -32,7 +32,8 @@ if (isset($_POST["action"])) {
         case "Subscribe": {
                 if (isset($_REQUEST["email"]) && !empty($_REQUEST["email"])) {
                     $subscriberEmail = $_REQUEST["email"];
-					include_once ('db.php');
+					include_once ('php/db.php');
+					CheckDBLoad();
 					$result = SaveEmail($_REQUEST["email"]);
 					if ($result == 0)
 					{
