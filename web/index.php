@@ -125,6 +125,7 @@ function SaveEmail($Email)
    if($conn === false)
    {
      //FatalError("Failed to connect...");
+	 echo '<script type="text/javascript">alert("Failed to connect...");</script>';
 	 return 0;
    }
 
@@ -135,11 +136,13 @@ function SaveEmail($Email)
    if ($stmt === false)
    {
      //FatalError("Failed to insert data into test table: ");
+	 echo '<script type="text/javascript">alert("Failed to save...");</script>';
 	 return 1;
    }
    sqlsrv_free_stmt($stmt);
 
    sqlsrv_close($conn);
+   	 echo '<script type="text/javascript">alert("Success!");</script>';
    return 2;
 }
 
