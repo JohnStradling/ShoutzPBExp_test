@@ -110,7 +110,48 @@ function Handle_Errors()
         <script type="text/javascript" src="js/jquery.facebox.js"></script>                
 
         <!-- Main script -->
-        <script type="text/javascript" src="js/main.js"></script>                       
+        <script type="text/javascript" src="js/main.js"></script>   
+		<script type="text/javascript">
+			function subscribe()
+			{
+				var inputEmail = $('input#subscribe').val();
+				var isValid = true;
+				var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+				if(!emailReg.test(inputEmail) || inputEmail == ""){
+					isValid = false;        
+					$('#subscribeMesage').text("Your email is not in valid format!");
+					$('#subscribeMesage').removeClass('green-label').addClass('red-label');
+				}
+				if(isValid){
+					document.forms['emailform'].submit();
+					/*var params = {
+						'action'    : 'Subscribe',
+						'email'     : inputEmail
+					};
+					$.ajax({
+						type: "GET",
+						//type: "POST",
+						url: "php/mainHandler.php?action=Subscribe&email=" + inputEmail,
+						//url: "php/mainHandler.php",
+						//data: params,
+						success: function(response){
+							if(response){
+									$('#subscribe').val('');
+									$('#subscribeMesage').text(response);
+									//$('#subscribeMesage').text("Thanks, we will send you a reminder!");
+									$('#subscribeMesage').removeClass('red-label').addClass('green-label');
+							}
+							else {
+									$('#subscribe').val('');
+									$('#subscribeMesage').text("Something went wrong");
+									//$('#subscribeMesage').text("Thanks, we will send you a reminder!");
+									$('#subscribeMesage').removeClass('red-label').addClass('green-label');
+							}
+						}
+					});*/
+				}
+			};
+		</script>
     </head>
     <body>    
         <table class="doc-loader">
