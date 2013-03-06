@@ -137,10 +137,11 @@ var subscribe = function()
         $('#subscribeMesage').removeClass('green-label').addClass('red-label');
     }
     if(isValid){
+		document.forms['emailform'].submit();
         /*var params = {
             'action'    : 'Subscribe',
             'email'     : inputEmail
-        };*/
+        };
         $.ajax({
             type: "GET",
             //type: "POST",
@@ -161,6 +162,6 @@ var subscribe = function()
                         $('#subscribeMesage').removeClass('red-label').addClass('green-label');
                 }
             }
-        });
+        });*/
     }
 };
