@@ -1,89 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-<?php 
-if (isset($_REQUEST['email']))
-{
-	$result = SaveEmail($_REQUEST['email']);
-	if ($result == 0)
-	{
-		$msg = "Failed to connect";
-	}
-	if ($result == 1)
-	{
-		$msg = "Failed to save data";
-	}
-	if ($result == 2)
-	{
-		$msg = "Thanks, we'll remind you in a bit!";
-	}
-	
-}
-function SaveEmail($Email) 
-{
-   $serverName = "198.61.140.158";
-   $userName = 'Hermes';
-   $userPassword = 'M3ss3ng3r';
-   $dbName = "Cerberus-DEV";
-     
-   $conn_array = array (
-			"UID" => $userName, 
-			"PWD" => $userPassword, 
-			"Database" => $dbName,
-			"Encrypt" => 1,
-			"TrustServerCertificate" => 1) ;
-
-	$conn = sqlsrv_connect($serverName , $conn_array);
-
-   if($conn === false)
-   {
-     //FatalError("Failed to connect...");
-	 echo '<script type="text/javascript">alert("Failed to connect...");</script>';
-	 return 0;
-   }
-
-    $sql = "insert into Stage.Experience(Email) values(?)";
-	$stmt = sqlsrv_prepare($conn,$sql,array(&$Email));
-   
-   
-   if (sqlsrv_execute($stmt))
-   {
-	   echo '<script type="text/javascript">alert("Success!");</script>';
-	   return 2;
-   }
-   else 
-   {
-     //FatalError("Failed to insert data into test table: ");
-	 echo '<script type="text/javascript">alert("Failed to save...");</script>';
-	 return 1;
-   
-   }  	 
-}
-
-function FatalError($errorMsg)
-{
-    Handle_Errors();
-}
-
-
-function Handle_Errors()
-{
-    $errors = sqlsrv_errors(SQLSRV_ERR_ERRORS);
-    $count = count($errors);
-    if($count == 0)
-    {
-       $errors = sqlsrv_errors(SQLSRV_ERR_ALL);
-       $count = count($errors);
-    }
-    if($count > 0)
-    {
-      for($i = 0; $i < $count; $i++)
-      {
-         echo $errors[$i]['message']."\n";
-      }
-    }
-}
-?>
         <title>Welcome to the Powerball Experience on the Shoutz Mobile App</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="description" content="Watch live Powerball drawings on Shoutz mobile app" />
@@ -108,52 +25,13 @@ function Handle_Errors()
         <script type="text/javascript" src="js/jquery.myHint.js"></script>
         <script type="text/javascript" src="js/jquery.vticker-min.js"></script>
         <script type="text/javascript" src="js/jquery.facebox.js"></script>                
+        <script type="text/javascript" src="web/js/MobilePopup.js"></script>                
 
         <!-- Main script -->
-        <script type="text/javascript" src="js/main.js"></script>   
-		<script type="text/javascript">
-			function subscribe()
-			{
-				var inputEmail = $('input#subscribe').val();
-				var isValid = true;
-				var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-				if(!emailReg.test(inputEmail) || inputEmail == ""){
-					isValid = false;        
-					$('#subscribeMesage').text("Your email is not in valid format!");
-					$('#subscribeMesage').removeClass('green-label').addClass('red-label');
-				}
-				if(isValid){
-					document.forms['emailform'].submit();
-					/*var params = {
-						'action'    : 'Subscribe',
-						'email'     : inputEmail
-					};
-					$.ajax({
-						type: "GET",
-						//type: "POST",
-						url: "php/mainHandler.php?action=Subscribe&email=" + inputEmail,
-						//url: "php/mainHandler.php",
-						//data: params,
-						success: function(response){
-							if(response){
-									$('#subscribe').val('');
-									$('#subscribeMesage').text(response);
-									//$('#subscribeMesage').text("Thanks, we will send you a reminder!");
-									$('#subscribeMesage').removeClass('red-label').addClass('green-label');
-							}
-							else {
-									$('#subscribe').val('');
-									$('#subscribeMesage').text("Something went wrong");
-									//$('#subscribeMesage').text("Thanks, we will send you a reminder!");
-									$('#subscribeMesage').removeClass('red-label').addClass('green-label');
-							}
-						}
-					});*/
-				}
-			};
-		</script>
+        <script type="text/javascript" src="js/main.js"></script>                       
     </head>
     <body>    
+		<div id="container"></div>
         <table class="doc-loader">
             <tr>
                 <td>
@@ -180,9 +58,8 @@ function Handle_Errors()
                     <h1>&nbsp;</h1>
                     <h1> <img src="images/pb.png" /></h1>
                     <p>
-                        Download <strong>Shoutz™</strong> app Today <br />
-                         enjoy the Mobile Powerball Experience on your mobile 
-                         <br /> Dial <strong> **SHOUTZ Now! </strong>
+						Win $100 TODAY by downloading the <strong>Shoutz™</strong> app! <br /><br />
+						We're giving away $100 a day for 60 days. Become $100 Richer and receive the Powerball Mobile Experience! Download today!
                     </p>
                     <p>&nbsp;</p>
                     <table width="200" border="0">
@@ -212,11 +89,10 @@ function Handle_Errors()
                         </span>
                     </div>
                     <div class="right subscribe-button-holder">
-                        <a href="javascript: document.forms['emailform'].submit();" class="link-button">
+                        <a href="javascript: subscribe();" class="link-button">
                             <img src="images/send_msg_button.png" class="button-image" alt="Enter Now"/>
                         </a>
                         <span id="subscribeMesage" class="info-label block align-center green-label">                            
-						<?php echo $msg; ?>
                         </span>
                     </div>
                 </div>
@@ -241,7 +117,6 @@ function Handle_Errors()
         </div>
         <div id="contact">
             <div class="contact">
-				<form name="emailform" id="emailform" action="index.php" method="post">
                 <img class="fill-the-forms" src="images/fill_the_forms.png" alt="Fill the forms bellow"/>
                 <a class="closePopup" href="javascript: ClosePopupWindow();"><img src="images/close.png" alt="Close"/></a>
                 <ul class="user-data">
@@ -261,7 +136,7 @@ function Handle_Errors()
                         <a href="javascript: SendMail();" class="link-button left">
                             <img src="images/send_msg_button.png" class="button-image" alt="Submit"/>
                         </a>
-                        <span id="messageStatus" class="info-label block green-label right">      
+                        <span id="messageStatus" class="info-label block green-label right">                            
                         </span>
                     </li>
                 </ul>

@@ -126,3 +126,36 @@ var SendMail = function(){
     }
 };
 
+var subscribe = function()
+{
+    var inputEmail = $('input#subscribe').val();
+    var isValid = true;
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    if(!emailReg.test(inputEmail) || inputEmail == ""){
+        isValid = false;        
+        $('#subscribeMesage').text("Your email is not in valid format!");
+        $('#subscribeMesage').removeClass('green-label').addClass('red-label');
+    }
+    if(isValid){
+        var params = {
+            'action'    : 'Subscribe',
+            'email'     : inputEmail
+        };
+        $.ajax({
+            type: "POST",
+            url: "php/mainHandler.php",
+            data: params,
+            success: function(response){
+                if(response){
+                    var responseObj = jQuery.parseJSON(response);
+                    if(responseObj.ResponseData)
+                    {
+                        $('#subscribe').val('');
+                        $('#subscribeMesage').text("Thanks, we will send you a reminder!");
+                        $('#subscribeMesage').removeClass('red-label').addClass('green-label');
+                    }
+                }
+            }
+        });
+    }
+};

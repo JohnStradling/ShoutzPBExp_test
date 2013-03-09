@@ -50,6 +50,10 @@ em
 {
     text-align: center;
 }
+div.container
+{
+    text-align: center;
+}
 div.header
 {
     background-image: url("../images/background.jpg");    

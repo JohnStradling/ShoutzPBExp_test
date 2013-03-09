@@ -30,24 +30,9 @@ if (isset($_POST["action"])) {
 
     switch ($action) {
         case "Subscribe": {
-                if (isset($_REQUEST["email"]) && !empty($_REQUEST["email"])) {
-                    $subscriberEmail = $_REQUEST["email"];
-					include_once ('php/db.php');
-					CheckDBLoad();
-					$result = SaveEmail($_REQUEST["email"]);
-					if ($result == 0)
-					{
-						$response = "Message Not Sent: Connection Failed";
-					}
-					else if ($result == 1)
-					{
-						$response = "Message Not Sent: Insert Failed";
-					}
-					else 
-					{
-						$response = "Message Sent";
-					}
-/*					include_once (dirname(dirname(__FILE__)).'/php/classes/class__mail.php');
+                if (isset($_POST["email"]) && !empty($_POST["email"])) {
+                    $subscriberEmail = $_POST["email"];
+					include_once (dirname(dirname(__FILE__)).'/php/classes/class__mail.php');
 
                     $messageText = 'You have new subscriber for your site.<br /><br />This is the subscribed email address<br />====================================<br />' . $subscriberEmail;
 
@@ -55,10 +40,9 @@ if (isset($_POST["action"])) {
                 } else {
                     $response = "Sending Message Failed";
                 }
- */
-			}
+            }
             break;
-  /*      case "SendMessage": {
+        case "SendMessage": {
                 if (isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["subject"]) && isset($_POST["message"])
                         && !empty($_POST["name"]) && !empty($_POST["email"]) && !empty($_POST["subject"]) && !empty($_POST["message"])) {
                     include("classes/class__mail.php");
@@ -69,14 +53,13 @@ if (isset($_POST["action"])) {
                 }
             }
             break;
- */       default: {
+        default: {
                 $response = "Invalid action is set! Action is: " . $action;
             }
     }
 }
 
 if (isset($response) && !empty($response) && !is_null($response)) {
-    echo $response;
-	//echo '{"ResponseData":' . json_encode($response) . '}';
+    echo '{"ResponseData":' . json_encode($response) . '}';
 }
 ?>
