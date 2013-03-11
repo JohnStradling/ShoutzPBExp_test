@@ -21,7 +21,6 @@ function GetFiles($ContentProfileTag)
 
 	if($conn === false)
 	{
-	 FatalError("Failed to connect...");
 	 echo '<script type="text/javascript">alert("Failed to connect...");</script>';
 	 //	return 0;
 	}
