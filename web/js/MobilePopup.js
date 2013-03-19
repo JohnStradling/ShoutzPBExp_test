@@ -30,7 +30,7 @@
         });
         popupWin.find('#shoutzDnldImg').css({
             "width": Math.round(310 * ratio),
-            "height": Math.round(68 * ratio),
+            "height": Math.round(63 * ratio),
             "left": Math.round(170 * ratio),
             "bottom": Math.round(25 * ratio)
         });
