@@ -20,8 +20,8 @@
             "height": popupHeight
         });
         popupWin.find('#shoutzPopupImg').css({
-            "width": Math.round(664 * ratio),
-            "height": Math.round(360 * ratio)
+            "width": Math.round(664 * ratio * ratio),
+            "height": Math.round(360 * ratio * ratio)
         });
         popupWin.find('#shoutzCloseImg').css({
             "width": Math.round(100 * ratio),
@@ -31,8 +31,8 @@
         popupWin.find('#shoutzDnldImg').css({
             "width": Math.round(310 * ratio),
             "height": Math.round(74 * ratio),
-            "left": Math.round(177 * ratio),
-            "bottom": Math.round(50 * ratio)
+            "left": Math.round(170 * ratio),
+            "bottom": Math.round(25 * ratio)
         });
         popupWin.find('#shoutzMsg').css({
             "position":"absolute",
