@@ -36,10 +36,8 @@
         });
         popupWin.find('#shoutzMsg').css({
             "position":"absolute",
-            "width": Math.round(740 * ratio * 0.7),
-            "height": Math.round(200 * ratio * 0.7),
-            "left": Math.round(177 * ratio * 0.4),
-            "bottom": Math.round(120 * ratio)
+            "width": Math.round(664 * ratio),
+            "height": Math.round(360 * ratio)
         });
     }
 
